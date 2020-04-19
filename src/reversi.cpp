@@ -266,7 +266,7 @@ bool Chess::IsLeftDown(int x, int y)
 bool Chess::IsCanPlayPoint(int x, int y)
 {
     bool is_play = false;
-    if ((IsRight(x, y))) {direction_[x][y][0] = 1;is_play= true;}
+    if ((IsRight(x, y))){direction_[x][y][0] = 1;is_play= true;}
     if ((IsRightUp(x, y))) {direction_[x][y][1] = 1;is_play= true;}
     if ((IsUp(x, y))) {direction_[x][y][2] = 1;is_play= true;}
     if ((IsLeftUp(x, y))) {direction_[x][y][3] = 1;is_play= true;}
@@ -449,17 +449,22 @@ void Chess::ReverseChess()
         this->ReversePoint(location/10, location%10);
         this->ShowChess();
 
-//        string filename2 = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/final.txt";
-//        ifstream out(filename2);
-//
-//        for (auto & i : chess_)
-//        {
-//            for (char & j : i)
-//            {
-//                out >> j;
-//            }
-//        }
-//        out.close();
+        ofstream out("/Users/kolane/Desktop/CLionProjects/reversi_demo/file/final.txt", iostream::app);
+        for (int i=0; i < MAX_SIZE; i++)
+        {
+            out << "=";
+        }
+        out << '\n';
+
+        for (auto & ches : chess_)
+        {
+            for (char che : ches)
+            {
+                out << che;
+            }
+            out << '\n';
+        }
+        out.close();
 
         for (int i=0;i<MAX_SIZE;i++)  // 还原原棋盘位置
         {
