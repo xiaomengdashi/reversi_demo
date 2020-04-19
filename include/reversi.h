@@ -19,10 +19,9 @@ public:
     void ShowBoard();
     void ReverseBoard();
 
-
 public:
     bool IsCanPlayPoint(int x, int y);   // 该点8个方向能下棋的个数
-    void ReversePoint(int x, int y);
+    void ReversePoint(int x, int y);     //
 
     // 从该点上下左右边判断是否能下
     bool IsRight(int x, int y);    //  右
@@ -51,8 +50,8 @@ private:
     string InsertPoint(int x, int y);
 
 private:
-    char chess_[MAX_SIZE][MAX_SIZE] = {" "};
-//    int direction_[8] ={0};   //逆时针方向，该方向是否能下棋的数组
+    char chess_[MAX_SIZE][MAX_SIZE] = {0};
     set <string> can_reverse_point_set_;   // 可以落子的点的集合
+    int direction_[MAX_SIZE][MAX_SIZE][MAX_SIZE]={0};  // 64个点的8个方向判断
 };
 #endif //REVERSI_DEMO_REVERSI_H
