@@ -5,11 +5,13 @@ using namespace std;
 
 int main()
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init2.txt";
-    Board board;
-    board.InitBoard(filename);
-//    board.ShowBoard();
-
+    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init4.txt";
+    Chess chess;
+    chess.InitBoard(filename);
+    chess.IsCanPlay();
+//    chess.IsCanPlayPoint(4,4);
+//    chess.ReversePoint(4,4);
+    chess.ReverseBoard();
 
     return 0;
 }
