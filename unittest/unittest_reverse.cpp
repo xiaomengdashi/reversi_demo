@@ -8,7 +8,7 @@ using namespace std;
 
 TEST(REVERSERIGHT, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(4,5), "W");
     chess.ReverseRight(4,4);
@@ -17,7 +17,7 @@ TEST(REVERSERIGHT, TRUE)
 
 TEST(REVERSEUP, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(3,4), "W");
     chess.ReverseUp(4,4);
@@ -26,7 +26,7 @@ TEST(REVERSEUP, TRUE)
 
 TEST(REVERSELEFT, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(4,3), "W");
     chess.ReverseLeft(4,4);
@@ -35,7 +35,7 @@ TEST(REVERSELEFT, TRUE)
 
 TEST(REVERSEDOWN, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(5,4), "W");
     chess.ReverseDown(4,4);
@@ -44,7 +44,7 @@ TEST(REVERSEDOWN, TRUE)
 
 TEST(REVERSERIGHTUP, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(3,5), "W");
     chess.ReverseRightUp(4,4);
@@ -53,7 +53,7 @@ TEST(REVERSERIGHTUP, TRUE)
 
 TEST(REVERSERIGHTDOWN, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(5,5), "W");
     chess.ReverseRightDown(4,4);
@@ -62,7 +62,7 @@ TEST(REVERSERIGHTDOWN, TRUE)
 
 TEST(REVERSELEFTUP, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(3,3), "W");
     chess.ReverseLeftUp(4,4);
@@ -71,7 +71,7 @@ TEST(REVERSELEFTUP, TRUE)
 
 TEST(REVERSELEFTDOWN, TRUE)
 {
-    string filename = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/init3.txt";
+    string filename = "../../file/init3.txt";
     Chess chess(filename);
     EXPECT_EQ(chess.GetPointState(5,3), "W");
     chess.ReverseLeftDown(4,4);

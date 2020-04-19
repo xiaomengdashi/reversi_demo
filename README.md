@@ -1,3 +1,14 @@
+### 执行
+```asm
+mkdir build 
+cd build
+cmake .. && make
+cd bin
+./reversi ../../file/init5.txt
+./inuttest
+```
+
+
 ### 要求：
     a) 找到所有可以落黑棋的地方
     b)  在找到可落子的地方后，翻转被夹住的白棋

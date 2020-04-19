@@ -449,7 +449,7 @@ void Chess::ReverseChess()
         this->ReversePoint(location/10, location%10);
         this->ShowChess();
 
-        ofstream out("/Users/kolane/Desktop/CLionProjects/reversi_demo/file/final.txt", iostream::app);
+        ofstream out("../../file/final.txt", iostream::app);
         for (int i=0; i < MAX_SIZE; i++)
         {
             out << "=";

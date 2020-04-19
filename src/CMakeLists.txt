@@ -1,9 +1,9 @@
 include_directories(../include)
 
-add_executable(main
+add_executable(reversi
         main.cpp
         reversi.cpp
         )
-target_link_libraries(main pthread)
+target_link_libraries(reversi pthread)
 
 
