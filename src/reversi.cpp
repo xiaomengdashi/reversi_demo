@@ -10,7 +10,10 @@
 
 using namespace std;
 
-void Chess::InitBoard(const string& filename)
+
+Chess::Chess()= default;
+
+Chess::Chess(std::string &filename)
 {
     ifstream in(filename);
 
@@ -24,7 +27,7 @@ void Chess::InitBoard(const string& filename)
     in.close();
 }
 
-void Chess::ShowBoard()
+void Chess::ShowChess()
 {
     for (int i=0; i < MAX_SIZE; i++)
     {
@@ -39,6 +42,11 @@ void Chess::ShowBoard()
         }
         cout << endl;
     }
+}
+
+string Chess::LocationToString(int x, int y)
+{
+    return to_string(x) + to_string(y);
 }
 
 bool Chess::IsRight(int x, int y)
@@ -62,7 +70,7 @@ bool Chess::IsRight(int x, int y)
     if (is_play)
     {
         direction_[x][y][0] = 1;
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
     }
     return is_play;
 }
@@ -87,7 +95,7 @@ bool Chess::IsLeft(int x, int y)
 
     if (is_play)
     {
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
         direction_[x][y][4] = 1;
     }
     return is_play;
@@ -114,7 +122,7 @@ bool Chess::IsUp(int x, int y)
     if (is_play)
     {
         direction_[x][y][2] = 1;
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
     }
 
     return is_play;
@@ -140,7 +148,7 @@ bool Chess::IsDown(int x, int y)
 
     if (is_play)
     {
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
         direction_[x][y][6] = 1;
     }
 
@@ -168,7 +176,7 @@ bool Chess::IsRightUp(int x, int y)
 
     if (is_play)
     {
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
         direction_[x][y][1] = 1;
     }
     return is_play;
@@ -194,7 +202,7 @@ bool Chess::IsRightDown(int x, int y)
     }
     if (is_play)
     {
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
         direction_[x][y][7] = 1;
     }
 
@@ -221,7 +229,7 @@ bool Chess::IsLeftUp(int x, int y)
     }
     if (is_play)
     {
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
         direction_[x][y][3] = 1;
     }
 
@@ -248,7 +256,7 @@ bool Chess::IsLeftDown(int x, int y)
     }
     if (is_play)
     {
-        can_reverse_point_set_.insert(this->InsertPoint(x, y));
+        can_reverse_point_set_.insert(this->LocationToString(x, y));
         direction_[x][y][5] = 1;
     }
 
@@ -257,34 +265,34 @@ bool Chess::IsLeftDown(int x, int y)
 
 bool Chess::IsCanPlayPoint(int x, int y)
 {
-    if ((IsRight(x, y))) direction_[x][y][0] = 1;
-    if ((IsRightUp(x, y))) direction_[x][y][1] = 1;
-    if ((IsUp(x, y))) direction_[x][y][2] = 1;
-    if ((IsLeftUp(x, y))) direction_[x][y][3] = 1;
-    if ((IsLeft(x, y))) direction_[x][y][4] = 1;
-    if ((IsLeftDown(x, y))) direction_[x][y][5] = 1;
-    if ((IsDown(x, y))) direction_[x][y][6] = 1;
-    if ((IsRightDown(x, y))) direction_[x][y][7] = 1;
+    bool is_play = false;
+    if ((IsRight(x, y))) {direction_[x][y][0] = 1;is_play= true;}
+    if ((IsRightUp(x, y))) {direction_[x][y][1] = 1;is_play= true;}
+    if ((IsUp(x, y))) {direction_[x][y][2] = 1;is_play= true;}
+    if ((IsLeftUp(x, y))) {direction_[x][y][3] = 1;is_play= true;}
+    if ((IsLeft(x, y))) {direction_[x][y][4] = 1;is_play= true;}
+    if ((IsLeftDown(x, y))) {direction_[x][y][5] = 1;is_play= true;}
+    if ((IsDown(x, y))) {direction_[x][y][6] = 1;is_play= true;}
+    if ((IsRightDown(x, y))) {direction_[x][y][7] = 1;is_play= true;}
 
-    int sum = 0;
-    for (int i; direction_[x][y][i]; i++)
-    {
-        sum += i;
-    }
-    return sum;
+    return is_play;
 }
 
-void Chess::ReversePoint(int x, int y)
+bool Chess::IsCanPlayChess()
 {
-    chess_[x][y] = 'B';
-    if (direction_[x][y][0]) ReverseRight(x, y);
-    if (direction_[x][y][4]) ReverseLeft(x, y);
-    if (direction_[x][y][2]) ReverseUp(x, y);
-    if (direction_[x][y][6]) ReverseDown(x, y);
-    if (direction_[x][y][1]) ReverseRightUp(x, y);
-    if (direction_[x][y][7]) ReverseRightDown(x, y);
-    if (direction_[x][y][3]) ReverseLeftUp(x, y);
-    if (direction_[x][y][5]) ReverseLeftDown(x, y);
+    bool is_play = false;
+    for (int i=0; i<MAX_SIZE; i++)
+    {
+        for (int j=0; j<MAX_SIZE; j++)
+        {
+            if (chess_[i][j] == '0')
+            {
+                if (this->IsCanPlayPoint(i,j))
+                    is_play = true;
+            }
+        }
+    }
+    return is_play;
 }
 
 void Chess::ReverseRight(int x, int y)
@@ -411,15 +419,23 @@ void Chess::ReverseLeftDown(int x, int y)
     }
 }
 
-string Chess::InsertPoint(int x, int y)
+void Chess::ReversePoint(int x, int y)
 {
-    return to_string(x) + to_string(y);
+    chess_[x][y] = 'B';
+    if (direction_[x][y][0]) ReverseRight(x, y);
+    if (direction_[x][y][4]) ReverseLeft(x, y);
+    if (direction_[x][y][2]) ReverseUp(x, y);
+    if (direction_[x][y][6]) ReverseDown(x, y);
+    if (direction_[x][y][1]) ReverseRightUp(x, y);
+    if (direction_[x][y][7]) ReverseRightDown(x, y);
+    if (direction_[x][y][3]) ReverseLeftUp(x, y);
+    if (direction_[x][y][5]) ReverseLeftDown(x, y);
 }
 
-void Chess::ReverseBoard()
+void Chess::ReverseChess()
 {
     Chess chess2;
-    for (int i=0;i<MAX_SIZE;i++)
+    for (int i=0;i<MAX_SIZE;i++)  // 备份棋盘位置
     {
         for (int j = 0; j < MAX_SIZE; ++j) {
             chess2.chess_[i][j] = this->chess_[i][j];
@@ -429,32 +445,28 @@ void Chess::ReverseBoard()
     set<string>::iterator it; //定义前向迭代器
     for(it=can_reverse_point_set_.begin();it!=can_reverse_point_set_.end();it++)
     {
-        static int index = 1;
-        int a = std::atoi((*it).c_str());
-        this->ReversePoint(a/10, a%10);
-        cout << index << endl;
-        index++;
-        this->ShowBoard();
+        int location = std::atoi((*it).c_str());
+        this->ReversePoint(location/10, location%10);
+        this->ShowChess();
 
-        for (int i=0;i<MAX_SIZE;i++)
+        for (int i=0;i<MAX_SIZE;i++)  // 还原原棋盘位置
         {
-            for (int j = 0; j < MAX_SIZE; ++j) {
+            for (int j = 0; j < MAX_SIZE; ++j)
+            {
                 this->chess_[i][j] = chess2.chess_[i][j];
             }
         }
     }
 }
 
-void Chess::IsCanPlay()
+std::string Chess::GetPointState(int x, int y)
 {
-    for (int i=0; i<MAX_SIZE; i++)
-    {
-        for (int j=0; j<MAX_SIZE; j++)
-        {
-            if (chess_[i][j] == '0')
-            {
-                this->IsCanPlayPoint(i,j);
-            }
-        }
-    }
+    std::string state;
+    if (chess_[x][y] == '0') state = "0";
+    else if (chess_[x][y] == 'B') state = "B";
+    else state = "W";
+
+    return state;
 }
+
+
