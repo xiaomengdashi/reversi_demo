@@ -40,18 +40,30 @@
 //}
 
 
-#include<iostream>
-#include<set>
-#include <cstdlib>
-#include <string>
+//#include<iostream>
+//#include<set>
+//#include <cstdlib>
+//#include <string>
+//using namespace std;
+////set插入元素操作
+//int main()
+//{
+//    string s = "12";
+//    int a = std::atoi(s.c_str());
+//    int b = a/10;
+//    int c = a%10;
+//    cout << s << "==" << a << "==" << b << "==" << c <<  endl;
+//     return 0;
+//}
+
+#include <iostream>
 using namespace std;
-//set插入元素操作
-int main()
+
+
+int   main(int   argc, char*   argv[])
 {
-    string s = "12";
-    int a = std::atoi(s.c_str());
-    int b = a/10;
-    int c = a%10;
-    cout << s << "==" << a << "==" << b << "==" << c <<  endl;
-     return 0;
+    int   i;
+    for (i = 0; i<argc; i++)
+        cout << argv[i] << endl;
+    return   0;
 }

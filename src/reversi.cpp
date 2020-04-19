@@ -449,6 +449,18 @@ void Chess::ReverseChess()
         this->ReversePoint(location/10, location%10);
         this->ShowChess();
 
+//        string filename2 = "/Users/kolane/Desktop/CLionProjects/reversi_demo/file/final.txt";
+//        ifstream out(filename2);
+//
+//        for (auto & i : chess_)
+//        {
+//            for (char & j : i)
+//            {
+//                out >> j;
+//            }
+//        }
+//        out.close();
+
         for (int i=0;i<MAX_SIZE;i++)  // 还原原棋盘位置
         {
             for (int j = 0; j < MAX_SIZE; ++j)
@@ -468,5 +480,3 @@ std::string Chess::GetPointState(int x, int y)
 
     return state;
 }
-
-
